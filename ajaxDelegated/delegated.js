@@ -67,7 +67,7 @@ el.addEventListener('click', function(e){ // You can't namespace events here as 
 
 * In jQuery you can do both of those things at once by putting 'return false;' at the end of your handler functions
 * Also worth noting that in the pure javascript example above you get a basic evebt object supplied to you. In the
-* jQuery ones you get an enhanced one with more jQyery goodies and measurements in it...
+* jQuery ones you get an enhanced one with more jQuery goodies and measurements in it...
 *
 * PROTIP: Use 'Visual Event' to see what jQuery functions are bound to what. (From https://sprymedia.co.uk/article/Visual+Event+2 or there's a chrome addon)
 */
