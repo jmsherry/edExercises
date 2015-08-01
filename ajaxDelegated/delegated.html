@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Javascript Lessons</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+  <body>
+    <div class="container container-fluid">
+      <h1>Binding demonstration and delegated functions</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <h2>The normal way</h2>
+          <p>Content is static (ie it's not being shipped in by ajax), so binding javascript events to it is easy because it's there in the browsers system.</p>
+          <div id="normal">
+            <a href="#" class="triggerLink">Click Me!</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h2>Undelegated</h2>
+          <p>Content in this pod is brought in by ajax, so the problem is that the DOM (HTML) loads and the javascript binds,
+            but then this html turns up via ajax AFTER that, and so has nothing bound to it. If you click the links you'll see
+            they don't work. #problem!!</p>
+          <div id="undelegated"></div>
+        </div>
+        <div class="col-md-4">
+          <h2>Delegated</h2>
+          <p>The link below is targeted by a delegated event, and so will work...</p>
+          <div id="delegated"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+
+    <script src="./delegated.js"></script>
+
+
+</body>
+</html>
