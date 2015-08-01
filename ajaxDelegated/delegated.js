@@ -51,7 +51,8 @@ $(function(){ //This is the jQuert 'onDocumentReady' function, which means that 
 *
 * Also, when an event is triggered on an element it 'bubbles' up the DOM tree (like bubbles rising). That means that if there are events
 * on nodes above which are listening for the same thing then they will be triggered to. You may wish to stop the bubbling, as it's risky.
-* Again, on the event object, there's a method called 'stopPropagation'.
+* Again, on the event object, there's a method called 'stopPropagation'. 'stopImmediatePropagation' kills the process immediately - even listners on
+* the same node will not be fired...
 *
 * So normally, without jQuery, you would write:
 
@@ -61,6 +62,8 @@ el.addEventListener('click', function(e){ // You can't namespace events here as 
   e.preventDefault();
   e.stopPropagation()
 });
+
+//See https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener for more including browser compat - IE9 + only...
 
 * In jQuery you can do both of those things at once by putting 'return false;' at the end of your handler functions
 * Also worth noting that in the pure javascript example above you get a basic evebt object supplied to you. In the
