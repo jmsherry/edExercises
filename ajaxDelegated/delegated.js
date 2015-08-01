@@ -1,18 +1,27 @@
 $(function(){ //This is the jQuert 'onDocumentReady' function, which means that all the HTML is in the DOM tree and ready to be acted upon. NB It may not be rendered yet...
 
-  //First we're going to bind events normally:
+  //First we're going to bind events normally (first column):
   $('.triggerLink').on('click.jim', function(e){
     console.log(arguments);
     alert('BOOYAH!! (normal event)');
     return false; // See below
   });
 
-  //Now we're going to bind a delegated event:
-  $('body').on('click.jim', '#delegated .triggerLink', function(e){
+  //Now we're going to bind a delegated event (third column):
+  $('body').on('click.jimDelegated', '#delegated .triggerLink', function(e){
     console.log(arguments);
     alert('BOOYAH (delegated event)!!');
     return false; // See below
   });
+
+  //Now we're going to bind a delegated event that we'll trigger manually (first column):
+  $('body').on('click.triggered', '#normal .triggerLink', function(e){
+    console.log(arguments);
+    alert('BOOYAH (triggered event)!!');
+    return false; // See below
+  });
+
+  //Trigger this event by typing: $('#normal .triggerLink').trigger('click.triggered'); into your console and hitting return.
 
   //Now bring in content via ajax
   $.ajax({
@@ -57,5 +66,5 @@ el.addEventListener('click', function(e){ // You can't namespace events here as 
 * Also worth noting that in the pure javascript example above you get a basic evebt object supplied to you. In the
 * jQuery ones you get an enhanced one with more jQyery goodies and measurements in it...
 *
-*
+* PROTIP: Use 'Visual Event' to see what jQuery functions are bound to what. (From https://sprymedia.co.uk/article/Visual+Event+2 or there's a chrome addon)
 */

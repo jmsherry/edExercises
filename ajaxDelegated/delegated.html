@@ -8,30 +8,97 @@
     <meta name="viewport" content="width=device-width">
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .container {
+        margin-top:10px;
+        margin-bottom: 10px;
+      }
+      h1 {
+        margin-bottom: 30px;
+      }
+      .pod {
+        border: 1px solid #000;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        padding:0 15px;
+      }
+      .pod.footer {
+        margin-top:15px;
+        padding:15px;
+      }
+      .pod.footer p {
+        margin-bottom: 0;
+      }
+      pre {
+        margin: 15px -15px 0;
+        -webkit-border-bottom-right-radius: 4px;
+        -webkit-border-bottom-left-radius: 4px;
+        -webkit-border-top-right-radius: 0;
+        -webkit-border-top-left-radius: 0;
+        -moz-border-radius-bottomright: 4px;
+        -moz-border-radius-bottomleft: 4px;
+        -moz-border-radius-topright: 0;
+        -moz-border-radius-topleft: 0;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        border-left:0;
+        border-right:0;
+      }
+    </style>
 
 </head>
   <body>
     <div class="container container-fluid">
-      <h1>Binding demonstration and delegated functions</h1>
+      <h1>Binding demonstration and delegated functions:</h1>
       <div class="row">
         <div class="col-md-4">
-          <h2>The normal way</h2>
-          <p>Content is static (ie it's not being shipped in by ajax), so binding javascript events to it is easy because it's there in the browsers system.</p>
-          <div id="normal">
-            <a href="#" class="triggerLink">Click Me!</a>
+          <div class="pod">
+            <h2>The normal way</h2>
+            <p>HTML content in this column is static (i.e. it's not being shipped in by ajax), so binding javascript events to it is easy because it's there in the browsers system whem the events are bound.</p>
+            <div id="normal">
+              <a href="#" class="triggerLink">Click Me!</a>
+            </div>
+            <pre>$('.triggerLink').on('click.jim', function(e){
+  console.log(arguments);
+  alert('BOOYAH!! (normal event)');
+  return false;
+});</pre>
           </div>
         </div>
         <div class="col-md-4">
-          <h2>Undelegated</h2>
-          <p>Content in this pod is brought in by ajax, so the problem is that the DOM (HTML) loads and the javascript binds,
-            but then this html turns up via ajax AFTER that, and so has nothing bound to it. If you click the links you'll see
-            they don't work. #problem!!</p>
-          <div id="undelegated"></div>
+          <div class="pod">
+            <h2>Ajax content with normal event binding</h2>
+            <p>The link in this column is brought in by ajax, but the problem is that the DOM (HTML for the page) loads and the javascript binds to it,
+              but then the link html is inserted via ajax AFTER that, and so has nothing bound to it. If you click the link below you'll see
+              that it doesn't work. #problem!!</p>
+            <div id="undelegated"></div>
+            <pre>//targeted by the function in the column to the left...
+
+(which misses because the link wasn't there when the javascript loaded!)</pre>
+          </div>
         </div>
         <div class="col-md-4">
-          <h2>Delegated</h2>
-          <p>The link below is targeted by a delegated event, and so will work...</p>
-          <div id="delegated"></div>
+          <div class="pod">
+            <h2>Delegated</h2>
+            <p>The link below is targeted by a delegated event, and so will work...</p>
+            <p>it's the second parameter <strong>'#delegated .triggerLink'</strong> that targets it. Any new content that turns up and matches the selector will have the event handler bound to it.</p>
+            <div id="delegated"></div>
+            <pre>$('body').on('click.jimDelegated', '#delegated .triggerLink', function(e){
+              console.log(arguments);
+              alert('BOOYAH (delegated event)!!');
+              return false; // See below
+            });</pre>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pod footer">
+            <p>Remember to type: $('#normal .triggerLink').trigger('click.triggered'); into the console to manually trigger the event on the first column's link. Also, try triggering other events like this...</p>
+          </div>
         </div>
       </div>
     </div>
