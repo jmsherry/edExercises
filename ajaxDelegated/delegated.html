@@ -61,7 +61,8 @@
             <div id="normal">
               <a href="#" class="triggerLink">Click Me!</a>
             </div>
-            <pre>$('.triggerLink').on('click.jim', function(e){
+            <pre>$('.triggerLink').on('click.jim',
+function(e){
   console.log(arguments);
   alert('BOOYAH!! (normal event)');
   return false;
@@ -86,11 +87,12 @@
             <p>The link below is also brought in via ajax but is targeted by a delegated event, and so will work...</p>
             <p>it's the second parameter <strong>'#delegated .triggerLink'</strong> that targets it. Any new content that turns up and matches the selector will have the event handler bound to it.</p>
             <div id="delegated"></div>
-            <pre>$('body').on('click.jimDelegated', '#delegated .triggerLink', function(e){
-              console.log(arguments);
-              alert('BOOYAH (delegated event)!!');
-              return false; // See below
-            });</pre>
+            <pre>$('body').on('click.jimDelegated',
+'#delegated .triggerLink', function(e){
+  console.log(arguments);
+  alert('BOOYAH (delegated event)!!');
+  return false; // See below
+});</pre>
           </div>
         </div>
       </div>
