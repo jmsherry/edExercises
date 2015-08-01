@@ -46,7 +46,7 @@ $(function(){ //This is the jQuert 'onDocumentReady' function, which means that 
 * So just a quick thing. When you click a link it tries to navigate the browser to somewhere. This is a problem if your link has no target.
 * ie. href="#" <-- that will tell the browser to jump to the first element on the page, so your viewport will leap upwards. #bad
 *
-* Trying to navigate somewhere is a link's 'DEFAULT ACTION'. You need to stop that happening. On the event object there's a method called
+* Trying to navigate somewhere is a link's 'DEFAULT ACTION'. You need to stop that happening. On the 'event object' ['response' above and 'e' below] there's a method called
 * 'preventDefault' that will do this.
 *
 * Also, when an event is triggered on an element it 'bubbles' up the DOM tree (like bubbles rising). That means that if there are events
@@ -59,7 +59,7 @@ var el = document.getElementById('#myEl');
 el.addEventListener('click', function(e){ // You can't namespace events here as you can in jQuery, so no 'click.ed' :(
   //Do something
   e.preventDefault();
-  e.stopPropagation*()
+  e.stopPropagation()
 });
 
 * In jQuery you can do both of those things at once by putting 'return false;' at the end of your handler functions
