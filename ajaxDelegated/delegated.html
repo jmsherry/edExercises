@@ -70,7 +70,7 @@
         </div>
         <div class="col-md-4">
           <div class="pod">
-            <h2>Ajax content with normal event binding</h2>
+            <h2>Ajax content with normal event binding = #problem!!</h2>
             <p>The link in this column is brought in by ajax, but the problem is that the DOM (HTML for the page) loads and the javascript binds to it,
               but then the link html is inserted via ajax AFTER that, and so has nothing bound to it. If you click the link below you'll see
               that it doesn't work. #problem!!</p>
@@ -83,7 +83,7 @@
         <div class="col-md-4">
           <div class="pod">
             <h2>Delegated</h2>
-            <p>The link below is targeted by a delegated event, and so will work...</p>
+            <p>The link below is also brought in via ajax but is targeted by a delegated event, and so will work...</p>
             <p>it's the second parameter <strong>'#delegated .triggerLink'</strong> that targets it. Any new content that turns up and matches the selector will have the event handler bound to it.</p>
             <div id="delegated"></div>
             <pre>$('body').on('click.jimDelegated', '#delegated .triggerLink', function(e){
