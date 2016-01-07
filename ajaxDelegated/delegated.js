@@ -28,16 +28,20 @@ $(function(){ //This is the jQuery 'onDocumentReady' function, which means that 
     url: "ajaxContent.html",
     context: document.getElementById('undelegated') // See below
   }).done(function(response) {
-    $(this).append(response);
-    console.log('HTML imported for div#undelegated', response);
+    window.setTimeout(function(){
+      $(this).html(response);
+      console.log('HTML imported for div#undelegated', response);
+    }.bind(this), 2000);
   });
 
   $.ajax({
     url: "ajaxContent.html",
     context: document.getElementById('delegated') // HERE HERE!! These lines set the context of 'this' in the success handler
 }).done(function(response) {
-    $(this).append(response); //'this' context set above...
+  window.setTimeout(function(){
+    $(this).html(response); //context for this set above
     console.log('HTML imported for div#delegated', response);
+  }.bind(this), 2000);
   });
 
 });
